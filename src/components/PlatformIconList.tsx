@@ -6,6 +6,8 @@ import {
   FaLinux,
   FaAndroid,
 } from "react-icons/fa";
+import { MdPhoneIphone } from "react-icons/md";
+import { BsGlobe } from "react-icons/bs";
 import { BsNintendoSwitch } from "react-icons/bs";
 import { Fragment } from "react/jsx-runtime";
 import { Platform } from "../hooks/useGames";
@@ -25,6 +27,8 @@ function PlatformIconList({ platforms }: Props) {
     mac: FaApple,
     linux: FaLinux,
     android: FaAndroid,
+    ios: MdPhoneIphone,
+    web: BsGlobe,
   };
 
   return (
