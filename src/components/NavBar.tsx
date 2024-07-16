@@ -20,6 +20,7 @@ import {
   MenuList,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import GenreList from "./GenreList";
 
 function NavBar() {
   // Show Full Logo on Medium-Sized Screens and Above
@@ -48,14 +49,8 @@ function NavBar() {
 
   return (
     <Box px={4} paddingY="10px">
-
       {/* Spacing and Positioning of All Elements within NavBar */}
-      <HStack 
-        justifyContent={"space-between"} 
-        maxWidth="80em" 
-        margin="auto"
-      >
-
+      <HStack justifyContent={"space-between"} maxWidth="80em" margin="auto">
         {/* Logo */}
         <Image
           src={showLogo}
@@ -81,29 +76,7 @@ function NavBar() {
           </InputGroup>
 
           {/* Genres Filter */}
-          {showGenresFilter && (
-            <Menu>
-              <MenuButton
-                as={Button}
-                borderRadius="0px 14px 14px 0px"
-                backgroundColor="#EDF4FF"
-                color="#434141"
-                minW="1.5em%"
-              >
-                <HStack>
-                  <span>Genres</span>
-                  rightIcon=
-                  {
-                    <BsChevronDown
-                      style={{ marginTop: "2px" }}
-                      size="0.9em"
-                    ></BsChevronDown>
-                  }
-                </HStack>
-              </MenuButton>
-              <MenuList></MenuList>
-            </Menu>
-          )}
+          {showGenresFilter && <GenreList></GenreList>}
         </HStack>
 
         {/* Profile Icon */}
