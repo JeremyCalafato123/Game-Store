@@ -6,10 +6,14 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import useGenres from "../hooks/useGenres";
+import useGenres, { Genre } from "../hooks/useGenres";
 import { BsChevronDown } from "react-icons/bs";
 
-function GenreList() {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+function GenreList({ onSelectGenre }: Props) {
   const { data, error } = useGenres();
 
   return (
@@ -34,7 +38,11 @@ function GenreList() {
       </MenuButton>
       <MenuList>
         {data.map((genre) => (
-          <MenuItem key={genre.id} color="black">
+          <MenuItem
+            onClick={() => onSelectGenre(genre)}
+            key={genre.id}
+            color="black"
+          >
             {genre.name}
           </MenuItem>
         ))}

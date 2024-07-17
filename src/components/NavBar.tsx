@@ -21,8 +21,13 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import GenreList from "./GenreList";
+import { Genre } from "../hooks/useGenres";
 
-function NavBar() {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+function NavBar({ onSelectGenre }: Props) {
   // Show Full Logo on Medium-Sized Screens and Above
   const showLogo = useBreakpointValue({
     md: FullLogo,
@@ -76,7 +81,7 @@ function NavBar() {
           </InputGroup>
 
           {/* Genres Filter */}
-          {showGenresFilter && <GenreList></GenreList>}
+          {showGenresFilter && <GenreList onSelectGenre={onSelectGenre} />}
         </HStack>
 
         {/* Profile Icon */}

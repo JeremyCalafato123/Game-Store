@@ -2,9 +2,14 @@ import { Fragment } from "react";
 import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
+import { Genre } from "../hooks/useGenres";
 
-const GameGrid = () => {
-  const { data, error } = useGames();
+interface Props {
+  selectedGenre: Genre | null;
+}
+
+const GameGrid = ({ selectedGenre }: Props) => {
+  const { data, error } = useGames(selectedGenre);
 
   return (
     <Fragment>
