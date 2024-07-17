@@ -10,7 +10,7 @@ import useGenres from "../hooks/useGenres";
 import { BsChevronDown } from "react-icons/bs";
 
 function GenreList() {
-  const { genres, error } = useGenres();
+  const { data, error } = useGenres();
 
   return (
     <Menu>
@@ -33,7 +33,7 @@ function GenreList() {
         </HStack>
       </MenuButton>
       <MenuList>
-        {genres.map((genre) => (
+        {data.map((genre) => (
           <MenuItem key={genre.id} color="black">
             {genre.name}
           </MenuItem>

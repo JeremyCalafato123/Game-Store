@@ -4,7 +4,7 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 
 const GameGrid = () => {
-  const { games, error } = useGames();
+  const { data, error } = useGames();
 
   return (
     <Fragment>
@@ -17,7 +17,7 @@ const GameGrid = () => {
         maxWidth="80em"
         margin="auto"
       >
-        {games.map((game) => (
+        {data.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
       </SimpleGrid>
