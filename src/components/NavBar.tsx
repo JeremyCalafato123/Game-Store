@@ -22,6 +22,7 @@ import {
 } from "@chakra-ui/react";
 import GenreList from "./GenreList";
 import { Genre } from "../hooks/useGenres";
+import SearchInput from "./SearchInput";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
@@ -40,18 +41,6 @@ function NavBar({ onSelectGenre }: Props) {
     base: false,
   });
 
-  // Change the Curviture of the Search Bar According to the Size of the Screen
-  const curveSearchBar = useBreakpointValue({
-    md: "14px 0px 0px 14px",
-    base: "14px 14px 14px 14px",
-  });
-
-  // Show "Search Games" Placeholder on Medium-Sized Screens and Above, Else Show "Search" Placeholder
-  const showPlaceholder = useBreakpointValue({
-    md: "Search Games",
-    base: "Search",
-  });
-
   return (
     <Box px={4} paddingY="10px">
       {/* Spacing and Positioning of All Elements within NavBar */}
@@ -63,22 +52,10 @@ function NavBar({ onSelectGenre }: Props) {
           padding="10px"
         />
 
-        {/* Search Bar */}
+        {/* Search Bar And Genres Filter*/}
         <HStack spacing={0} flex="1" mx="5%">
-          <InputGroup>
-            <InputRightElement
-              children={<BsSearch color="black"></BsSearch>}
-            ></InputRightElement>
-            <Input
-              flex="1"
-              borderRadius={curveSearchBar}
-              backgroundColor="white"
-              color="#6C6C6C"
-              fontWeight="semibold"
-              placeholder={showPlaceholder}
-              _placeholder={{ color: "#6C6C6C", fontWeight: "semibold" }}
-            />
-          </InputGroup>
+          {/* Search Bar */}
+          <SearchInput></SearchInput>
 
           {/* Genres Filter */}
           {showGenresFilter && <GenreList onSelectGenre={onSelectGenre} />}
