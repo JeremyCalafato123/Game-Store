@@ -26,9 +26,10 @@ import SearchInput from "./SearchInput";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  onSearch: (searchText: string) => void;
 }
 
-function NavBar({ onSelectGenre }: Props) {
+function NavBar({ onSelectGenre, onSearch }: Props) {
   // Show Full Logo on Medium-Sized Screens and Above
   const showLogo = useBreakpointValue({
     md: FullLogo,
@@ -55,7 +56,7 @@ function NavBar({ onSelectGenre }: Props) {
         {/* Search Bar And Genres Filter*/}
         <HStack spacing={0} flex="1" mx="5%">
           {/* Search Bar */}
-          <SearchInput></SearchInput>
+          <SearchInput onSearch={onSearch}></SearchInput>
 
           {/* Genres Filter */}
           {showGenresFilter && <GenreList onSelectGenre={onSelectGenre} />}

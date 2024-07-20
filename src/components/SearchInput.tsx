@@ -4,9 +4,16 @@ import {
   InputRightElement,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 
-function SearchInput() {
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+function SearchInput({ onSearch }: Props) {
+  const ref = useRef<HTMLInputElement>(null);
+
   // Change the Curviture of the Search Bar According to the Size of the Screen
   const curveSearchBar = useBreakpointValue({
     md: "14px 0px 0px 14px",
@@ -20,20 +27,28 @@ function SearchInput() {
   });
 
   return (
-    <InputGroup>
-      <InputRightElement
-        children={<BsSearch color="black"></BsSearch>}
-      ></InputRightElement>
-      <Input
-        flex="1"
-        borderRadius={curveSearchBar}
-        backgroundColor="white"
-        color="#6C6C6C"
-        fontWeight="semibold"
-        placeholder={showPlaceholder}
-        _placeholder={{ color: "#6C6C6C", fontWeight: "semibold" }}
-      />
-    </InputGroup>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        if (ref.current) onSearch(ref.current.value);
+      }}
+    >
+      <InputGroup>
+        <InputRightElement
+          children={<BsSearch color="black"></BsSearch>}
+        ></InputRightElement>
+        <Input
+          ref={ref}
+          flex="1"
+          borderRadius={curveSearchBar}
+          backgroundColor="white"
+          color="#6C6C6C"
+          fontWeight="semibold"
+          placeholder={showPlaceholder}
+          _placeholder={{ color: "#6C6C6C", fontWeight: "semibold" }}
+        />
+      </InputGroup>
+    </form>
   );
 }
 

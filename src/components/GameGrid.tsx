@@ -6,10 +6,11 @@ import { Genre } from "../hooks/useGenres";
 
 interface Props {
   selectedGenre: Genre | null;
+  selectedSearch: String;
 }
 
-const GameGrid = ({ selectedGenre }: Props) => {
-  const { data, error } = useGames(selectedGenre);
+const GameGrid = ({ selectedGenre, selectedSearch }: Props) => {
+  const { data, error } = useGames(selectedGenre, selectedSearch);
 
   return (
     <Fragment>
