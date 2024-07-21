@@ -3,14 +3,14 @@ import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import { Genre } from "../hooks/useGenres";
+import { GameQuery } from "../App";
 
 interface Props {
-  selectedGenre: Genre | null;
-  selectedSearch: String;
+  gameQuery: GameQuery;
 }
 
-const GameGrid = ({ selectedGenre, selectedSearch }: Props) => {
-  const { data, error } = useGames(selectedGenre, selectedSearch);
+const GameGrid = ({ gameQuery }: Props) => {
+  const { data, error } = useGames(gameQuery);
 
   return (
     <Fragment>

@@ -4,24 +4,25 @@ import GameGrid from "./components/GameGrid";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 
+export interface GameQuery {
+  genre: Genre | null;
+  searchText: string;
+}
+
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedSearch, setSelectedSearch] = useState<String>("");
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   return (
     <Grid templateAreas={{ base: '"nav" "main"' }}>
       <GridItem area="nav" backgroundColor="#2d3748" color="White">
         <NavBar
-          onSelectGenre={(genre) => setSelectedGenre(genre)}
-          onSearch={(searchText) => setSelectedSearch(searchText)}
+          onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+          onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
         />
       </GridItem>
 
       <GridItem area="main" backgroundColor="#1e1e1e" color="White">
-        <GameGrid
-          selectedGenre={selectedGenre}
-          selectedSearch={selectedSearch}
-        />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );
