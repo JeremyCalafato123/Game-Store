@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
+import Carousel from "./components/CarouselGrid";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -22,6 +23,7 @@ function App() {
       </GridItem>
 
       <GridItem area="main" backgroundColor="#1e1e1e" color="White">
+        <Carousel gameQuery={gameQuery}></Carousel>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
