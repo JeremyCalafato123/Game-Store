@@ -1,6 +1,7 @@
-import { Card, CardBody, Grid, Heading, Image } from "@chakra-ui/react";
+import { Box, Card, CardBody, Grid, Heading, Image } from "@chakra-ui/react";
 import { Game } from "../hooks/useGames";
 import getCroppedImageUrl from "../services/image-url";
+import TagList from "./TagList";
 
 interface Props {
   game: Game;
@@ -16,7 +17,17 @@ function FeaturedGame({ game }: Props) {
           borderRadius={10}
         ></Image>
         <CardBody>
-          <Heading color="white">{game.name}</Heading>
+          {/* Game Title */}
+          <Heading color="white" marginBottom="13px">
+            {game.name}
+          </Heading>
+
+          {/* Game Tags */}
+          <Box maxHeight="55px" overflow="hidden">
+            {game.tags.map((tags) => (
+              <TagList key={tags.id} tags={tags}></TagList>
+            ))}
+          </Box>
         </CardBody>
       </Grid>
     </Card>

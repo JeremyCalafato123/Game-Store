@@ -8,6 +8,12 @@ export interface Platform
   slug: string
 }
 
+export interface Tag
+{
+  id: number,
+  name: string
+}
+
 export interface Game 
 {
   id: number;
@@ -15,6 +21,7 @@ export interface Game
   background_image: string;
   parent_platforms: { platform: Platform } []
   metacritic: number;
+  tags: Tag[];
 }
 
 function useGames(gameQuery: GameQuery)
