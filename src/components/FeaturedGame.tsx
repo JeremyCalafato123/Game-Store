@@ -17,6 +17,16 @@ interface Props {
 }
 
 function FeaturedGame({ game }: Props) {
+  // Convert mm/dd/yyy to a written date
+  var DigitDate = new Date(game.released);
+  var FullWrittenDate = DigitDate.toString();
+
+  var Month = FullWrittenDate.slice(4, 8);
+  var Day = FullWrittenDate.slice(8, 10);
+  var Year = FullWrittenDate.slice(11, 15);
+
+  var FinalWrittenDate = Month + Day + ", " + Year;
+
   return (
     <Card
       padding="15px"
@@ -43,8 +53,15 @@ function FeaturedGame({ game }: Props) {
             ))}
           </Box>
 
-          {/* Platforms */}
+          <Box position="absolute" bottom="65px" marginLeft="5px">
+            {/* Release Date */}
+            <Text color="#C7D3E8" marginTop="13px" fontSize="20" bottom="5px">
+              Release Date: {FinalWrittenDate}
+            </Text>
+          </Box>
+
           <Box position="absolute" bottom="25px" marginLeft="5px">
+            {/* Platforms */}
             <PlatformIconList
               platforms={game.parent_platforms.map((p) => p.platform)}
               iconSize={6}

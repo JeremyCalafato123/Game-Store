@@ -22,6 +22,7 @@ export interface Game
   parent_platforms: { platform: Platform } []
   metacritic: number;
   tags: Tag[];
+  released: string;
 }
 
 function useGames(gameQuery: GameQuery)
