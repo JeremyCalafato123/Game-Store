@@ -4,6 +4,7 @@ import {
   CardBody,
   Grid,
   Heading,
+  HStack,
   Image,
   Text,
 } from "@chakra-ui/react";
@@ -11,6 +12,7 @@ import { Game } from "../hooks/useGames";
 import getCroppedImageUrl from "../services/image-url";
 import TagList from "./TagList";
 import PlatformIconList from "./PlatformIconList";
+import CriticScore from "./CriticScore";
 
 interface Props {
   game: Game;
@@ -66,6 +68,19 @@ function FeaturedGame({ game }: Props) {
               platforms={game.parent_platforms.map((p) => p.platform)}
               iconSize={6}
             ></PlatformIconList>
+          </Box>
+
+          <Box
+            position="absolute"
+            bottom="25px"
+            right="50px"
+            marginRight="-5px"
+          >
+            <CriticScore
+              score={game.metacritic}
+              paddingX={4}
+              paddingY={2}
+            ></CriticScore>
           </Box>
         </CardBody>
       </Grid>

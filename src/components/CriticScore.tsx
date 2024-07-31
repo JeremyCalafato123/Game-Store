@@ -2,9 +2,11 @@ import { Badge } from "@chakra-ui/react";
 
 interface Props {
   score: number;
+  paddingX?: number;
+  paddingY?: number;
 }
 
-function CriticScore({ score }: Props) {
+function CriticScore({ score, paddingX = 2, paddingY = 0 }: Props) {
   let color = score > 75 ? "#9AE6B4" : score > 60 ? "yellow" : "red";
   let backgroundColor = score > 75 ? "#3F5359" : score > 60 ? "yellow" : "red";
 
@@ -14,7 +16,8 @@ function CriticScore({ score }: Props) {
       color={color}
       backgroundColor={backgroundColor}
       borderRadius="4px"
-      paddingX={2}
+      paddingX={paddingX}
+      paddingY={paddingY}
     >
       {score}
     </Badge>
