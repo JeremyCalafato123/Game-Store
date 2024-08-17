@@ -9,6 +9,8 @@ import { Fragment } from "react/jsx-runtime";
 import "../App.css";
 import CarouselPreviousArrow from "./CarouselPreviousArrow";
 import CarouselNextArrow from "./CarouselNextArrow";
+import CarouselDots from "./CarouselDots";
+import { useState } from "react";
 
 interface Props {
   gameQuery: GameQuery;
@@ -30,8 +32,10 @@ function CarouselGrid({ gameQuery }: Props) {
   const { data, error } = useGames(gameQuery);
   const featuredGames = data.slice(0, 5);
 
+  const [activeSlide, setActiveSlide] = useState(0);
+
   const settings = {
-    dots: false,
+    dots: true,
     fade: true,
     infinite: true,
     speed: 500,
@@ -42,6 +46,8 @@ function CarouselGrid({ gameQuery }: Props) {
     arrows: showArrows,
     prevArrow: <CarouselPreviousArrow />,
     nextArrow: <CarouselNextArrow />,
+    beforeChange: (current: number, next: number) => setActiveSlide(next),
+    customPaging: (i: number) => <CarouselDots isActive={i === activeSlide} />,
   };
 
   return (
