@@ -10,9 +10,14 @@ const customBreakpoints = {
   "2xl": "1600px",
 };
 
+const config: ThemeConfig = {
+  initialColorMode: "dark",
+};
+
 // Extend the default theme with custom breakpoints
 const theme = extendTheme({
   breakpoints: customBreakpoints,
+  config,
 });
 
 export default theme;
