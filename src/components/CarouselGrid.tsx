@@ -11,6 +11,7 @@ import CarouselPreviousArrow from "./CarouselPreviousArrow";
 import CarouselNextArrow from "./CarouselNextArrow";
 import CarouselDots from "./CarouselDots";
 import { useState } from "react";
+import FeaturedGameSkeleton from "./FeaturedGameSkeleton";
 
 interface Props {
   gameQuery: GameQuery;
@@ -29,10 +30,11 @@ function CarouselGrid({ gameQuery }: Props) {
     base: false,
   });
 
-  const { data, error } = useGames(gameQuery);
+  const { data, error, isLoading } = useGames(gameQuery);
   const featuredGames = data.slice(0, 5);
 
   const [activeSlide, setActiveSlide] = useState(0);
+  const skeletons = [1];
 
   const settings = {
     dots: true,
@@ -43,7 +45,7 @@ function CarouselGrid({ gameQuery }: Props) {
     autoplaySpeed: 8000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: showArrows,
+    arrows: showArrows && !isLoading,
     prevArrow: <CarouselPreviousArrow />,
     nextArrow: <CarouselNextArrow />,
     beforeChange: (current: number, next: number) => setActiveSlide(next),
@@ -66,13 +68,19 @@ function CarouselGrid({ gameQuery }: Props) {
       >
         {showCarousel && (
           <Fragment>
-            <Slider {...settings}>
-              {featuredGames.map((game) => (
-                <Box key={game.id}>
-                  <FeaturedGame game={game} />
-                </Box>
-              ))}
-            </Slider>
+            {isLoading ? (
+              skeletons.map((skeleton) => (
+                <FeaturedGameSkeleton key={skeleton}></FeaturedGameSkeleton>
+              ))
+            ) : (
+              <Slider {...settings}>
+                {featuredGames.map((game) => (
+                  <Box key={game.id}>
+                    <FeaturedGame game={game} />
+                  </Box>
+                ))}
+              </Slider>
+            )}
           </Fragment>
         )}
       </Box>
