@@ -11,9 +11,10 @@ import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-function GenreList({ onSelectGenre }: Props) {
+function GenreList({ onSelectGenre, selectedGenre }: Props) {
   const { data, error } = useGenres();
 
   return (
@@ -24,9 +25,11 @@ function GenreList({ onSelectGenre }: Props) {
         backgroundColor="#EDF4FF"
         color="#434141"
         minW="1.5em%"
+        _hover={{ backgroundColor: "#e6f0ff" }}
+        _active={{ backgroundColor: "#e6f0ff" }}
       >
         <HStack>
-          <span>Genres</span>
+          <span>{selectedGenre ? selectedGenre.name : "Genres"}</span>
           rightIcon=
           {
             <BsChevronDown
@@ -41,7 +44,9 @@ function GenreList({ onSelectGenre }: Props) {
           <MenuItem
             onClick={() => onSelectGenre(genre)}
             key={genre.id}
-            color="black"
+            color="white"
+            fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+            backgroundColor={genre.id === selectedGenre?.id ? "#515f75" : ""}
           >
             {genre.name}
           </MenuItem>

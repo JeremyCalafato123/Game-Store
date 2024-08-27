@@ -1,7 +1,6 @@
 import FullLogo from "../assets/Games-Store Logo.png";
 import SmallLogo from "../assets/Games-Store Logo Small.png";
 import profile from "../assets/Profile Icon 2.png";
-import { BsChevronDown, BsSearch } from "react-icons/bs";
 
 import {
   Avatar,
@@ -10,9 +9,6 @@ import {
   Center,
   HStack,
   Image,
-  Input,
-  InputGroup,
-  InputRightElement,
   Menu,
   MenuButton,
   MenuDivider,
@@ -27,9 +23,10 @@ import SearchInput from "./SearchInput";
 interface Props {
   onSelectGenre: (genre: Genre) => void;
   onSearch: (searchText: string) => void;
+  selectedGenre: Genre | null;
 }
 
-function NavBar({ onSelectGenre, onSearch }: Props) {
+function NavBar({ onSelectGenre, onSearch, selectedGenre }: Props) {
   // Show Full Logo on Medium-Sized Screens and Above
   const showLogo = useBreakpointValue({
     md: FullLogo,
@@ -59,7 +56,12 @@ function NavBar({ onSelectGenre, onSearch }: Props) {
           <SearchInput onSearch={onSearch}></SearchInput>
 
           {/* Genres Filter */}
-          {showGenresFilter && <GenreList onSelectGenre={onSelectGenre} />}
+          {showGenresFilter && (
+            <GenreList
+              selectedGenre={selectedGenre}
+              onSelectGenre={onSelectGenre}
+            />
+          )}
         </HStack>
 
         {/* Profile Icon */}

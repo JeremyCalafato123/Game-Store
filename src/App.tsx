@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import Carousel from "./components/CarouselGrid";
 import GameHeading from "./components/GameHeading";
-import FeaturedGame from "./components/FeaturedGame";
 import FeaturedGameHeading from "./components/FeaturedGameHeading";
 
 export interface GameQuery {
@@ -20,6 +19,7 @@ function App() {
     <Grid templateAreas={{ base: '"nav" "main"' }}>
       <GridItem area="nav" backgroundColor="#2d3748" color="White">
         <NavBar
+          selectedGenre={gameQuery.genre}
           onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
           onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
         />
