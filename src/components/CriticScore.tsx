@@ -1,25 +1,33 @@
 import { Badge } from "@chakra-ui/react";
 
 interface Props {
-  score: number;
+  score: number | null;
   paddingX?: number;
   paddingY?: number;
 }
 
 function CriticScore({ score, paddingX = 2, paddingY = 0 }: Props) {
-  let color = score > 75 ? "#9AE6B4" : score > 60 ? "yellow" : "red";
-  let backgroundColor = score > 75 ? "#3F5359" : score > 60 ? "yellow" : "red";
+  let color;
+
+  if (score === null) {
+    color = "gray";
+  } else if (score > 75) {
+    color = "green";
+  } else if (score > 60) {
+    color = "yellow";
+  } else {
+    color = "red";
+  }
 
   return (
     <Badge
       fontSize="30px"
-      color={color}
-      backgroundColor={backgroundColor}
+      colorScheme={color}
       borderRadius="4px"
       paddingX={paddingX}
       paddingY={paddingY}
     >
-      {score}
+      {score !== null ? score : "N/A"}
     </Badge>
   );
 }

@@ -35,7 +35,11 @@ function SearchInput({ onSearch }: Props) {
     >
       <InputGroup>
         <InputRightElement
+          cursor="pointer"
           children={<BsSearch color="black"></BsSearch>}
+          onClick={() => {
+            if (ref.current) onSearch(ref.current.value);
+          }}
         ></InputRightElement>
         <Input
           ref={ref}

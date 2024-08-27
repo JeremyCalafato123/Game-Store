@@ -9,6 +9,7 @@ import {
   Center,
   HStack,
   Image,
+  Link,
   Menu,
   MenuButton,
   MenuDivider,
@@ -44,11 +45,13 @@ function NavBar({ onSelectGenre, onSearch, selectedGenre }: Props) {
       {/* Spacing and Positioning of All Elements within NavBar */}
       <HStack justifyContent={"space-between"} maxWidth="80em" margin="auto">
         {/* Logo */}
-        <Image
-          src={showLogo}
-          width={{ base: "80px", md: "200px" }}
-          padding="10px"
-        />
+        <Link href="/">
+          <Image
+            src={showLogo}
+            width={{ base: "80px", md: "200px" }}
+            padding="10px"
+          />
+        </Link>
 
         {/* Search Bar And Genres Filter*/}
         <HStack spacing={0} flex="1" mx="5%">
@@ -65,8 +68,13 @@ function NavBar({ onSelectGenre, onSearch, selectedGenre }: Props) {
         </HStack>
 
         {/* Profile Icon */}
-        <Menu>
-          <MenuButton as={Button} variant={"link"} cursor={"pointer"}>
+        <Menu autoSelect={false}>
+          <MenuButton
+            as={Button}
+            variant={"link"}
+            cursor={"pointer"}
+            marginRight="9px"
+          >
             <Avatar size={"md"} src={profile} />
           </MenuButton>
           <MenuList alignItems={"center"} color="black">
@@ -75,12 +83,14 @@ function NavBar({ onSelectGenre, onSearch, selectedGenre }: Props) {
               <Avatar size={"2xl"} src={profile} />
             </Center>
             <br />
-            <Center>
+            <Center color="white">
               <p>Username</p>
             </Center>
             <br />
             <MenuDivider></MenuDivider>
-            <MenuItem>Logout</MenuItem>
+            <MenuItem color="white" _hover={{ backgroundColor: "#394353" }}>
+              Logout
+            </MenuItem>
           </MenuList>
         </Menu>
       </HStack>
