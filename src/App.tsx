@@ -25,7 +25,12 @@ function App() {
         />
       </GridItem>
 
-      <GridItem area="main" backgroundColor="#1e1e1e" color="White">
+      <GridItem
+        area="main"
+        backgroundColor="#1e1e1e"
+        color="White"
+        minHeight="100vh"
+      >
         <FeaturedGameHeading gameQuery={gameQuery}></FeaturedGameHeading>
         <Carousel gameQuery={gameQuery}></Carousel>
         <GameHeading gameQuery={gameQuery}></GameHeading>

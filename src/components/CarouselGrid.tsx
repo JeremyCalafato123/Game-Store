@@ -45,7 +45,7 @@ function CarouselGrid({ gameQuery }: Props) {
     autoplaySpeed: 8000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: showArrows && !isLoading,
+    arrows: showArrows && !isLoading && data.length > 0,
     prevArrow: <CarouselPreviousArrow />,
     nextArrow: <CarouselNextArrow />,
     beforeChange: (current: number, next: number) => setActiveSlide(next),

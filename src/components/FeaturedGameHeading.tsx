@@ -1,6 +1,7 @@
 import { Box, Heading, useBreakpointValue } from "@chakra-ui/react";
 import { GameQuery } from "../App";
 import { Fragment } from "react/jsx-runtime";
+import useGames from "../hooks/useGames";
 
 interface Props {
   gameQuery: GameQuery;
@@ -16,6 +17,8 @@ function FeaturedGameHeading({ gameQuery }: Props) {
     gameQuery.genre?.name ? gameQuery.genre.name + " Games" : ""
   }`;
 
+  const { data } = useGames(gameQuery);
+
   return (
     <Fragment>
       {showHeading && (
@@ -26,7 +29,7 @@ function FeaturedGameHeading({ gameQuery }: Props) {
             marginTop="30px"
             marginBottom="10px"
           >
-            <Heading fontSize="40px">{heading}</Heading>
+            <Heading fontSize="40px">{data.length > 0 && heading}</Heading>
           </Box>
         </Box>
       )}

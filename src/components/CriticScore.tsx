@@ -21,6 +21,7 @@ function CriticScore({ score, paddingX = 2, paddingY = 0 }: Props) {
 
   return (
     <Badge
+      marginLeft="5px"
       fontSize="30px"
       colorScheme={color}
       borderRadius="4px"
