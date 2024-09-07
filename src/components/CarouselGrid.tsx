@@ -31,7 +31,11 @@ function CarouselGrid({ gameQuery }: Props) {
   });
 
   const { data, error, isLoading } = useGames(gameQuery);
-  const featuredGames = data.slice(0, 5);
+
+  const featuredGames = data
+    .slice(0, 20)
+    .sort((a, b) => b.metacritic - a.metacritic)
+    .slice(0, 5);
 
   const [activeSlide, setActiveSlide] = useState(0);
   const skeletons = [1];
